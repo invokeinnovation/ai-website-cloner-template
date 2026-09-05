@@ -71,7 +71,7 @@ export function WorkIndex() {
                       className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.07]"
                     />
                     <span className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent" />
-                    <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-ink/60 px-3 py-1.5 font-technical text-[9px] uppercase tracking-[0.16em] text-bone backdrop-blur-md">
+                    <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-ink/75 px-3 py-1.5 font-technical text-[9px] uppercase tracking-[0.16em] text-bone">
                       {p.category}
                     </span>
                   </span>

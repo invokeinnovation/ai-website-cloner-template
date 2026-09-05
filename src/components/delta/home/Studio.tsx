@@ -51,14 +51,21 @@ export function Studio() {
                 </div>
               </Parallax>
 
-              <div className="d-glass absolute bottom-6 left-6 rounded-2xl px-5 py-4">
-                <div className="d-display text-[30px] leading-none text-bone">{COMPANY.since}</div>
-                <div className="mt-1.5 font-technical text-[9px] uppercase tracking-[0.2em] text-ash">
-                  Building in Raleigh since
-                </div>
-              </div>
             </div>
           </Reveal>
+
+          {/* Deliberately outside the .d-3d wrapper: WebKit mis-renders
+              backdrop-filter inside transform-style: preserve-3d, which turned this
+              badge into a sheared blob on iOS. The ink base also keeps the text
+              readable over the photo wherever backdrop-filter is unsupported. */}
+          <div className="absolute bottom-4 left-4 rounded-xl border border-white/12 bg-ink/80 px-4 py-3 backdrop-blur-md sm:bottom-6 sm:left-6 sm:rounded-2xl sm:px-5 sm:py-4">
+            <div className="font-technical text-[9px] uppercase tracking-[0.18em] text-ash sm:tracking-[0.2em]">
+              In Raleigh since
+            </div>
+            <div className="d-display mt-1 text-[24px] leading-none text-bone sm:text-[30px]">
+              {COMPANY.since}
+            </div>
+          </div>
         </div>
 
         {/* Copy */}

@@ -107,7 +107,7 @@ export function WorkRail() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent opacity-90" />
 
-                <span className="absolute left-5 top-5 rounded-full border border-white/20 bg-ink/60 px-3.5 py-1.5 font-technical text-[10px] uppercase tracking-[0.18em] text-bone backdrop-blur-md">
+                <span className="absolute left-5 top-5 rounded-full border border-white/20 bg-ink/75 px-3.5 py-1.5 font-technical text-[10px] uppercase tracking-[0.18em] text-bone">
                   {p.category}
                 </span>
 
