@@ -7,9 +7,15 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --font-heading: var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Delta Construction Group design tokens ---- */
+  --color-delta-red: #ee171f;
+  --color-delta-dark: #1c1c1c;
+  --color-delta-light: #f8f8f8;
+  --color-delta-footer: #1e1e1e;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -126,5 +132,330 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* ---- Delta Construction Group — shared site styles ---- */
+/* Scroll-reveal used by service icon-boxes and section headings (animate.css style). */
+@keyframes delta-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.delta-reveal {
+  opacity: 0;
+}
+.delta-reveal.is-visible {
+  animation: delta-fade-up 0.8s ease both;
+}
+
+/* Hero slider cross-fade (Flickity slider-type-fade equivalent). */
+@keyframes delta-slide-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Contact form inputs */
+.delta-input {
+  display: block;
+  width: 100%;
+  border: 1px solid #d4d4d4;
+  border-radius: 2px;
+  padding: 0.6rem 0.75rem;
+  font-size: 15px;
+  color: #333;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.delta-input:focus {
+  border-color: #ee171f;
+}
+
+/* ============================================================================
+   DELTA 2.0 — premium redesign layer
+   Dark, dimensional design system. Tokens + primitives used by src/components/delta.
+   ========================================================================== */
+
+@theme inline {
+  --font-display: var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-technical: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+
+  --color-ink: #08080a;
+  --color-ink-2: #0e0f13;
+  --color-ink-3: #15171d;
+  --color-ink-4: #1d2027;
+  --color-bone: #f4f1ec;
+  --color-bone-2: #ded9d0;
+  --color-ash: #8e8f99;
+  --color-signal: #e8191f;
+  --color-signal-hot: #ff3b30;
+  --color-sand: #cbb99c;
+}
+
+.d-dark {
+  background-color: var(--color-ink);
+  color: var(--color-bone);
+}
+
+/* ---- Depth: perspective + 3D stage ---- */
+.d-stage {
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+}
+.d-stage-near {
+  perspective: 900px;
+}
+.d-3d {
+  transform-style: preserve-3d;
+}
+
+/* ---- Blueprint grid floor receding into the horizon ---- */
+.d-floor {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform: rotateX(74deg) scale(2.6);
+  transform-origin: 50% 100%;
+  mask-image: linear-gradient(to top, #000 0%, transparent 72%);
+}
+
+/* ---- Flat blueprint grid (section backdrops) ---- */
+.d-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+.d-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(10, 10, 12, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 10, 12, 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* ---- Film grain, keeps large dark fields from banding ---- */
+.d-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* ---- Glass panel ---- */
+.d-glass {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+/* ---- Specular sheen that sweeps a surface on hover ---- */
+.d-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.d-sheen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  translate: -110% 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.16) 48%, transparent 66%);
+  transition: translate 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.d-sheen:hover::before {
+  translate: 110% 0;
+}
+
+/* ---- Tilt card: pointer-driven rotation set from JS ---- */
+.d-tilt {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.d-tilt.is-live {
+  transition: transform 0.12s linear;
+}
+.d-tilt-layer {
+  transform: translateZ(var(--z, 0px));
+}
+
+/* ---- Scroll reveal ---- */
+/* Hidden only where scripting can bring it back — no-JS clients see everything. */
+@media (scripting: enabled) {
+  .d-reveal:not(.is-in) {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  .d-reveal-3d:not(.is-in) {
+    opacity: 0;
+    transform: perspective(1200px) rotateX(14deg) translate3d(0, 44px, -60px);
+  }
+  .d-line > span {
+    transform: translateY(105%);
+  }
+}
+.d-reveal {
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--delay, 0ms);
+}
+.d-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+.d-reveal-3d {
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--delay, 0ms);
+}
+.d-reveal-3d.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Masked line-by-line headline rise ---- */
+.d-line {
+  display: block;
+  overflow: hidden;
+}
+.d-line > span {
+  display: block;
+  transition: transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--delay, 0ms);
+}
+.is-in .d-line > span,
+.d-line.is-in > span {
+  transform: none;
+}
+
+/* ---- Marquee ---- */
+@keyframes d-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.d-marquee-track {
+  animation: d-marquee var(--speed, 40s) linear infinite;
+}
+.d-marquee:hover .d-marquee-track {
+  animation-play-state: paused;
+}
+
+/* ---- Slow ambient float ---- */
+@keyframes d-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+.d-float {
+  animation: d-float var(--dur, 9s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ---- Signal underline that wipes in ---- */
+.d-link-wipe {
+  background-image: linear-gradient(var(--color-signal), var(--color-signal));
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  transition: background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.d-link-wipe:hover {
+  background-size: 100% 1px;
+}
+
+/* ---- Text treatments ---- */
+.d-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+.d-eyebrow {
+  font-family: var(--font-technical);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.d-stroke-text {
+  -webkit-text-stroke: 1px rgba(244, 241, 236, 0.22);
+  color: transparent;
+}
+
+/* ---- Custom scrollbars inside horizontal rails ---- */
+.d-rail {
+  scrollbar-width: none;
+}
+.d-rail::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d-reveal,
+  .d-reveal-3d,
+  .d-line > span {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .d-marquee-track,
+  .d-float {
+    animation: none !important;
+  }
+}
+
+@keyframes d-hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes d-scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(300%);
+  }
+}
+
+/* ---- Hero card stack camera ----
+   Face-on while the stack sits full-width under the copy; the dramatic yaw
+   (and the nudge that keeps its near edge off the viewport gutter) only kicks
+   in once the hero splits into two columns. */
+.d-hero-stack {
+  transform: rotateX(var(--cam-x)) rotateY(var(--cam-y)) translateZ(-20px);
+}
+@media (min-width: 1024px) {
+  .d-hero-stack {
+    transform: translateX(-6%) rotateX(var(--cam-x)) rotateY(calc(-16deg + var(--cam-y)))
+      translateZ(-40px);
   }
 }

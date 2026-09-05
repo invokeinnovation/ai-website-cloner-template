@@ -1,9 +1,24 @@
+import { Shell } from "@/components/delta/layout/Shell";
+import { Hero } from "@/components/delta/home/Hero";
+import { SectorMarquee } from "@/components/delta/home/SectorMarquee";
+import { Capabilities } from "@/components/delta/home/Capabilities";
+import { Work } from "@/components/delta/home/Work";
+import { Numbers } from "@/components/delta/home/Numbers";
+import { Studio } from "@/components/delta/home/Studio";
+import { Process } from "@/components/delta/home/Process";
+import { Commitment } from "@/components/delta/home/Commitment";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <p className="text-muted-foreground">
-        Clone target not yet built. Run <code className="font-mono text-foreground">/clone-website</code> to start.
-      </p>
-    </main>
+    <Shell>
+      <Hero />
+      <SectorMarquee />
+      <Capabilities />
+      <Work />
+      <Numbers />
+      <Studio />
+      <Process />
+      <Commitment />
+    </Shell>
   );
 }
