@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { COMPANY, NAV } from "../data/site";
 import { Wordmark } from "../ui/Wordmark";
 import { MagneticButton } from "../ui/Button";
+import { useScrollLock } from "../fx/useScrollLock";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -31,11 +32,16 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useScrollLock(open);
+
+  // Escape closes the overlay too.
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
     };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
@@ -144,6 +150,11 @@ export function SiteHeader() {
 
       {/* Mobile overlay */}
       <div
+        // Any tap dismisses: a link (which still navigates), the close button, or
+        // the backdrop. Relying on the pathname changing missed the case where the
+        // tapped link points at the page you are already on, which left the
+        // overlay open and the page scroll-locked.
+        onClick={() => setOpen(false)}
         className={cn(
           "fixed inset-0 z-[60] flex flex-col bg-ink transition-[opacity,visibility] duration-400 lg:hidden",
           open ? "visible opacity-100" : "invisible opacity-0",

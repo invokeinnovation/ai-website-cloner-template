@@ -8,6 +8,7 @@ import {
   type GalleryManifest,
 } from "@/components/sites/deltagroupnc-com-daf29435/shared/gallery-types";
 import { Container } from "../ui/Section";
+import { useScrollLock } from "../fx/useScrollLock";
 import { Reveal } from "../fx/Reveal";
 
 function cleanTitle(t: string) {
@@ -62,12 +63,10 @@ export function ProjectGallery({
       else if (e.key === "ArrowLeft") step(-1);
     };
     window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
+    return () => window.removeEventListener("keydown", onKey);
   }, [open, close, step]);
+
+  useScrollLock(open !== null);
 
   // Offset of each group's first shot inside the flattened lightbox list.
   const offsets = useMemo(
