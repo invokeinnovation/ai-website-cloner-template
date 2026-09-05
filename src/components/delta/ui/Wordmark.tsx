@@ -40,7 +40,7 @@ export function Wordmark({
         <span
           className={cn(
             "font-technical mt-1 tracking-[0.34em]",
-            compact ? "text-[7px]" : "text-[8px]",
+            compact ? "text-[8px]" : "text-[9px]",
             tone === "bone" ? "text-ash" : "text-ink/55",
           )}
         >

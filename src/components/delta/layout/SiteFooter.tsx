@@ -101,10 +101,13 @@ export function SiteFooter() {
 
           <div>
             <h3 className="d-eyebrow text-ash">Navigate</h3>
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-4 space-y-0.5">
               {NAV.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="d-link-wipe text-[15px] text-bone/85 hover:text-bone">
+                  <Link
+                    href={item.href}
+                    className="d-link-wipe inline-block py-2.5 text-[15px] text-bone/85 hover:text-bone"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -114,10 +117,13 @@ export function SiteFooter() {
 
           <div>
             <h3 className="d-eyebrow text-ash">Sectors</h3>
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-4 space-y-0.5">
               {NAV[1].children?.slice(1).map((c) => (
                 <li key={c.href}>
-                  <Link href={c.href} className="d-link-wipe text-[15px] text-bone/85 hover:text-bone">
+                  <Link
+                    href={c.href}
+                    className="d-link-wipe inline-block py-2.5 text-[15px] text-bone/85 hover:text-bone"
+                  >
                     {c.label}
                   </Link>
                 </li>
@@ -132,7 +138,7 @@ export function SiteFooter() {
                 <li key={label} className="flex gap-3 text-[14px] leading-relaxed text-bone/85">
                   <Icon className="mt-0.5 h-4 w-4 shrink-0 text-signal" strokeWidth={1.6} />
                   {href ? (
-                    <a href={href} className="d-link-wipe">
+                    <a href={href} className="d-link-wipe -my-1.5 py-1.5">
                       {label}
                     </a>
                   ) : (

@@ -36,7 +36,9 @@ export function Studio() {
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" />
               </div>
 
-              <Parallax speed={0.25} className="absolute -bottom-10 -right-8 hidden w-[42%] sm:block">
+              {/* Only floats once the section is two columns (lg). Below that the layout
+                  is stacked, so an overhanging absolute image lands on the copy below. */}
+              <Parallax speed={0.25} className="absolute -bottom-10 -right-8 hidden w-[42%] lg:block">
                 <div className="d-float overflow-hidden rounded-[20px] border border-white/12 shadow-[0_50px_90px_-40px_rgba(0,0,0,0.95)]">
                   <Image
                     src={DETAIL}

@@ -57,7 +57,7 @@ export function SiteHeader() {
             scrolled ? "h-[68px]" : "h-[92px]",
           )}
         >
-          <Link href="/" aria-label="Delta Construction Group — home" className="shrink-0">
+          <Link href="/" aria-label="Delta Construction Group — home" className="-my-2 shrink-0 py-2">
             <Wordmark compact={scrolled} />
           </Link>
 

@@ -175,7 +175,7 @@ export function Hero() {
             ].map((s) => (
               <div key={s.k}>
                 <dt className="d-display text-[23px] text-bone sm:text-[30px]">{s.k}</dt>
-                <dd className="mt-1.5 font-technical text-[9px] uppercase leading-relaxed tracking-[0.12em] text-ash sm:text-[10px] sm:tracking-[0.16em]">{s.v}</dd>
+                <dd className="mt-1.5 font-technical text-[10px] uppercase leading-relaxed tracking-[0.12em] text-ash sm:tracking-[0.16em]">{s.v}</dd>
               </div>
             ))}
           </dl>
@@ -243,7 +243,7 @@ export function Hero() {
                 onClick={() => setActive(i)}
                 aria-label={`Show ${s.name}`}
                 aria-current={i === active}
-                className="group relative h-8 w-10 overflow-hidden"
+                className="group relative h-11 w-11 overflow-hidden sm:w-10"
               >
                 <span
                   className={cn(
